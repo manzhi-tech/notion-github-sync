@@ -46,6 +46,12 @@ export async function githubWebhookRoute(
 
   // Parse event
   const eventType = c.req.header("X-GitHub-Event") ?? "";
+
+  // Handle ping event (sent when webhook is first configured)
+  if (eventType === "ping") {
+    return c.json({ ok: true, message: "pong" }, 200);
+  }
+
   let payload: GitHubEventPayload;
   try {
     payload = JSON.parse(body);
@@ -57,7 +63,7 @@ export async function githubWebhookRoute(
   const repo = payload.repository?.full_name;
 
   if (!repo || !action) {
-    return c.json({ error: "Missing repo or action" }, 400);
+    return c.json({ ok: true, skipped: "irrelevant event" }, 202);
   }
 
   // Check repo whitelist
