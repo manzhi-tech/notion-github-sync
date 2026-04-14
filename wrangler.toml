@@ -7,9 +7,11 @@ binding = "DB"
 database_name = "notion-github-sync"
 database_id = "placeholder-replace-after-d1-create"
 
-[[r2_buckets]]
-binding = "IMAGES"
-bucket_name = "notion-assets"
+# R2 bucket is optional — only needed if SYNC_IMAGE_STRATEGY = "r2"
+# To enable: run `wrangler r2 bucket create notion-assets`, then uncomment below
+# [[r2_buckets]]
+# binding = "IMAGES"
+# bucket_name = "notion-assets"
 
 [vars]
 SYNC_ECHO_WINDOW_SECONDS = "10"

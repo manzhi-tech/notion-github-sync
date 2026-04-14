@@ -4,7 +4,7 @@
 
 export type Bindings = {
   DB: D1Database;
-  IMAGES: R2Bucket;
+  IMAGES?: R2Bucket; // Optional — only when R2 is enabled
 
   // Secrets (set via `wrangler secret put`)
   GITHUB_TOKEN: string;
