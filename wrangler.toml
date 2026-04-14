@@ -1,0 +1,26 @@
+name = "notion-github-sync"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "notion-github-sync"
+database_id = "placeholder-replace-after-d1-create"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "notion-assets"
+
+[vars]
+SYNC_ECHO_WINDOW_SECONDS = "10"
+SYNC_BODY_DEBOUNCE_SECONDS = "30"
+SYNC_SKIP_LABEL = "no-sync"
+SYNC_IMAGE_STRATEGY = "upload_to_repo"
+SYNC_IMAGE_REPO_PATH = ".notion-assets"
+SYNC_IMAGE_MAX_SIZE_MB = "50"
+NOTION_DATABASE_ID = "placeholder-replace-with-your-database-id"
+GITHUB_REPOS = "owner/repo"
+
+# Cron trigger: run debounce processor every minute
+[triggers]
+crons = ["* * * * *"]
